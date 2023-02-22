@@ -1,6 +1,6 @@
 const allowedCors = [
-  // 'https://mkmesto.nomoredomains.work',
-  // 'http://mkmesto.nomoredomains.work',
+  'https://kino.nomoredomains.work',
+  'http://kino.nomoredomains.work',
   'localhost:3000',
 ];
 
