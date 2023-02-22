@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-const { NODE_ENV, DB_ADRESS } = process.env;
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
@@ -25,7 +24,7 @@ app.disable('x-powered-by');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-mongoose.connect(NODE_ENV === 'production' ? DB_ADRESS : dataBase, {});
+mongoose.connect(dataBase);
 app.use(cookieParser());
 app.use(requestLogger);
 
