@@ -1,7 +1,4 @@
-// const env = 'mongodb://127.0.0.1:27017/bitfilmsdb';
 const dataBase = 'mongodb://127.0.0.1/bitfilmsdb';
-// localhost:27017
-// const dataBase = '';
 const errorMessages = {
   incorrectUserData: 'Переданы некорректные данные пользователя.',
   userUniq: 'Пользовотель с введенным Email уже зарегестрирован.',
