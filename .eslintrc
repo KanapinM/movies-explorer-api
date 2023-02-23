@@ -8,8 +8,6 @@
           "_id"
         ]
       }
-    ],
-    "consistent-return": "off",
-    "no-useless-escape": "off"
+    ]
   }
 }

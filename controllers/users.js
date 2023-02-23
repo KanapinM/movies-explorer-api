@@ -2,20 +2,13 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const { errorMessages } = require('../utils/constants');
+const { errorMessages, successMessages } = require('../utils/constants');
 
-// const { JWT_SECRET = 'JWT_SECRET' } = process.env;
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
 const NotFoundError = require('../errors/NotFoundError');
-
-module.exports.getUsers = (req, res, next) => {
-  User.find({})
-    .then((users) => res.send({ users }))
-    .catch(next);
-};
 
 module.exports.createUser = (req, res, next) => {
   const {
@@ -42,7 +35,7 @@ module.exports.createUser = (req, res, next) => {
       } if (err.code === 11000) {
         return next(new Conflict(errorMessages.userUniq));
       }
-      next(err);
+      return next(err);
     });
 };
 
@@ -56,23 +49,8 @@ module.exports.login = (req, res, next) => {
     })
     .catch(next);
 };
-module.exports.logout = (req, res, next) => {
-  res.clearCookie('jwt').send({ message: 'Вы вышли из аккаунта' });
-  next();
-};
-
-module.exports.getUser = (req, res, next) => {
-  User.findById(req.params.userId)
-    .orFail(() => {
-      next(new NotFoundError(errorMessages.userNotFound));
-    })
-    .then((user) => res.send(user))
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        return next(new BadRequest(errorMessages.incorrectUserData));
-      }
-      next(err);
-    });
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt').send({ message: successMessages.logoutMessage });
 };
 
 module.exports.getMe = (req, res, next) => {
@@ -97,8 +75,10 @@ module.exports.updateProfile = (req, res, next) => {
     .then((updateProfile) => res.send(updateProfile))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequest(errorMessages.incorrectUserData));
+        return next(new BadRequest(errorMessages.incorrectUserData));
+      } if (err.code === 11000) {
+        return next(new Conflict(errorMessages.userUniq));
       }
-      next();
+      return next(err);
     });
 };

@@ -1,4 +1,5 @@
 const dataBase = 'mongodb://127.0.0.1/bitfilmsdb';
+const RegExp = /https?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+/;
 const errorMessages = {
   incorrectUserData: 'Переданы некорректные данные пользователя.',
   userUniq: 'Пользовотель с введенным Email уже зарегестрирован.',
@@ -16,4 +17,15 @@ const errorMessages = {
   error404: 'Страница по указанному маршруту не найдена',
 };
 
-module.exports = { dataBase, errorMessages };
+const successMessages = {
+  serverIsWork: 'Сервер работает',
+  logoutMessage: 'Вы вышли из аккаунта',
+  removeMovieMessage: 'Фильм удалён',
+};
+
+module.exports = {
+  dataBase,
+  errorMessages,
+  successMessages,
+  RegExp,
+};

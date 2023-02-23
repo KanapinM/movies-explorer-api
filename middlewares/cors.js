@@ -19,7 +19,7 @@ const cors = function (req, res, next) {
     return res.end();
   }
 
-  next();
+  return next();
 };
 
 module.exports = { cors };

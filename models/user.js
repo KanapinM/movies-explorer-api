@@ -1,4 +1,3 @@
-// const RegExp = /https?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+/;
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
@@ -12,12 +11,6 @@ const userSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 30,
   },
-  // avatar: {
-  //   type: String,
-  //   required: false,
-  //   match: [RegExp, 'Некорректный URL'],
-  //   default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
-  // },
   email: {
     type: String,
     required: true,

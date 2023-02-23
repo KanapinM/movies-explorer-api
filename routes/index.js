@@ -10,8 +10,8 @@ const { errorMessages } = require('../utils/constants');
 
 index.post('/signin', signInValidation(), login);
 index.post('/signup', signUpValidation(), createUser);
-index.post('/logout', logout);
 index.use(auth);
+index.post('/signout', logout);
 index.use('/movies', movies);
 index.use('/users', users);
 index.use((req, res, next) => {
