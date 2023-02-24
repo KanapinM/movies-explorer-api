@@ -27,7 +27,7 @@ const updateProfileValidation = () => celebrate({
 const createMovieValidation = () => celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
-    director: Joi.string().required().min(2),
+    director: Joi.string().required(),
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
@@ -42,7 +42,7 @@ const createMovieValidation = () => celebrate({
 
 const idValidation = () => celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().required(),
+    movieId: Joi.string().required().hex().length(24),
   }),
 });
 
