@@ -1,5 +1,5 @@
 const dataBase = 'mongodb://127.0.0.1/bitfilmsdb';
-const RegExp = /https?[\w\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+/;
+const RegExp = /(https?):\/\/[\w\-\\._~:'?#[\]@!$&'()*+,;=]+/;
 const errorMessages = {
   incorrectUserData: 'Переданы некорректные данные пользователя.',
   userUniq: 'Пользовотель с введенным Email уже зарегестрирован.',
