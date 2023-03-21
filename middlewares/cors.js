@@ -1,7 +1,7 @@
 const allowedCors = [
   'https://kino.nomoredomains.work',
   'http://kino.nomoredomains.work',
-  'localhost:3000',
+  'http://localhost:3000',
 ];
 
 const cors = function (req, res, next) {
